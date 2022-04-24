@@ -1,0 +1,19 @@
+
+<table class="table table-dark" >
+    
+    <thead>
+        
+    </thead>
+    <tbody>
+    <%  @ayas.each do |aya| %>
+        <tr>
+        <% if aya.text != nil %>
+            <td> <%=   aya.text  %></td>
+        <% end %>
+        </tr>
+    
+
+
+    <% end %>
+    </tbody>
+</table>
