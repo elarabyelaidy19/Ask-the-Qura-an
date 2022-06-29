@@ -1,0 +1,12 @@
+.boxy{
+    font-family: UthmanicHafs important;
+    direction: rtl;
+
+}
+    .btn { font-size: 50px;
+     }
+
+     .class:d-flex{
+            background-color: black;
+            font-size: 50px;
+     }
