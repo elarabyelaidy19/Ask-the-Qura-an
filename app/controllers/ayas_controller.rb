@@ -3,7 +3,7 @@ class AyasController < ApplicationController
 
   # GET /ayas or /ayas.json
   def index
-    @ayas = Aya.all
+    @ayas = Aya
   end
 
   # GET /ayas/1 or /ayas/1.json
