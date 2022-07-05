@@ -1,0 +1,37 @@
+<%#=search_form_for(@query , url: search_path , method: :get , class:'d-flex') do |f|  %>
+    <%#= f.search_field :content_or_text_cont , placeholder: "search...", class:"form-control me-2" %>
+    <%#= f.submit "search", class:"btn btn-outline-success" %>
+<%# end %>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>AskQuran</title>
+        <%= stylesheet_link_tag "home_page.css", media: 'all', 'data-turbolinks-track' => true %>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body>
+        
+        <div>
+        <center class="vertical-center">
+                <h1> سَل القرآن الكريم</h1>
+                <%# <form action="">
+                    <input type="text" name="query" placeholder="What do you want to ask?" class="searchbar">
+                    <input type="submit" value="Semantic Search" class="searchbutton">
+                    <input type="submit" name="btnI" value="Lexical Search" class="searchbutton">
+                </form> %>
+                <%=search_form_for(@query , url: search_path , method: :get ) do |f|  %>
+                    <%= f.search_field :content_or_text_cont , placeholder: "search...", class:"searchbar" %>
+                    <%= f.submit "semantic", class:"searchbutton" %>
+                    <%= f.submit "lexical", class:"searchbutton" %>
+                <% end %>
+
+        </center>
+        </div>
+        
+    </body>
+</html>

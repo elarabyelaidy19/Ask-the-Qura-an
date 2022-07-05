@@ -10,6 +10,9 @@ class AyasController < ApplicationController
   def show
   end
 
+  def home
+  end
+
   # GET /ayas/new
   def new
     @aya = Aya.new
