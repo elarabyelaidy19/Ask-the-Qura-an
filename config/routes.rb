@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'search', to:'search#index'
+  get 'semantic' , to:'search#semantic'
   resources :ayas
   root to: 'ayas#home'
 

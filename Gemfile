@@ -59,3 +59,5 @@ gem "ransack", "~> 3.0"
 
 gem "pagy"
 
+gem "excon"
+

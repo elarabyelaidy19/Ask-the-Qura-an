@@ -20,6 +20,5 @@ hash = JSON.parse(File.read(path))
 # end
         hash.each do |record|
           Aya.create(content: record["simple"] , text: record["text"])
-          
         end
 

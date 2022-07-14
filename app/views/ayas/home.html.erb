@@ -1,7 +1,4 @@
-<%#=search_form_for(@query , url: search_path , method: :get , class:'d-flex') do |f|  %>
-    <%#= f.search_field :content_or_text_cont , placeholder: "search...", class:"form-control me-2" %>
-    <%#= f.submit "search", class:"btn btn-outline-success" %>
-<%# end %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,19 +12,13 @@
 
     </head>
     <body>
-        
         <div>
         <center class="vertical-center">
                 <h1> سَل القرآن الكريم</h1>
-                <%# <form action="">
-                    <input type="text" name="query" placeholder="What do you want to ask?" class="searchbar">
-                    <input type="submit" value="Semantic Search" class="searchbutton">
-                    <input type="submit" name="btnI" value="Lexical Search" class="searchbutton">
-                </form> %>
                 <%=search_form_for(@query , url: search_path , method: :get ) do |f|  %>
                     <%= f.search_field :content_or_text_cont , placeholder: "search...", class:"searchbar" %>
-                    <%= f.submit "semantic", class:"searchbutton" %>
-                    <%= f.submit "lexical", class:"searchbutton" %>
+                    <%= f.button "Semantic Search", type: :submit, name: "semantic_type", value: "semantic", class: "btn btn-primary" %>
+                    <%= f.button "Lexical Search", type: :submit, name: "lexical_type", value: "lexical", class: "btn btn-secondary" %>
                 <% end %>
 
         </center>
