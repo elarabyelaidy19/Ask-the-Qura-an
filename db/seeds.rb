@@ -1,5 +1,6 @@
+
 require "json"
-path = File.join(File.dirname(__FILE__),'1.json')
+path = File.join(File.dirname(__FILE__),'ayas.json')
 hash = JSON.parse(File.read(path))
 
 
@@ -16,9 +17,12 @@ hash = JSON.parse(File.read(path))
 #     verses.each do |aya|
 #       # Aya.create(content: aya["text"])
 #       puts aya["text"]
-#     end
+#     
+#end
 # end
-        hash.each do |record|
-          Aya.create(content: record["simple"] , text: record["text"])
-        end
+hash.each do |record|
+   record["surah"]
+  Aya.create(content: record["simple"] , text: record["text"], aya_number: record["aya"], surah_name: record["name"], surah_number: record["surah"])
+end 
 
+# Footer

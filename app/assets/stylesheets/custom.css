@@ -7,7 +7,7 @@
 .d-flex{
         font-family: UthmanicHafs important;
         font-family: UthmanicHafs;
-        top: 50px;
+        top: 70px;
         position: fixed;
         width:100%;
         background-color:rgb(239, 239, 245);
@@ -55,6 +55,13 @@
 
 } */
 
+.table tr { 
+    border-bottom: 1px solid #cbcbcb; 
+    line-height: 60px;
+}
+
+
+
 .form-control{
     width: 40%;
     background-color:rgb(239, 239, 245);
@@ -70,8 +77,31 @@
     float: left;
 }
 
+
 .button{
     display: flex;  
     justify-content:space-evenly;
 }
 
+input[type="text"]::placeholder {            
+    text-align: right;
+} 
+
+.btn-space { 
+    margin-right: 7px;
+} 
+
+.searchbar { 
+    direction: rtl;
+} 
+
+.nav-link{ 
+    color: inherit; 
+    width: 70px; 
+    height: 60px;  
+} 
+
+.nav-main { 
+    text-decoration: none; 
+    color: black;
+}

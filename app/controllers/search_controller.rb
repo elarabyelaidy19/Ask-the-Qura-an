@@ -3,7 +3,9 @@
 
 # SerchController
 class SearchController < ApplicationController
-  def index 
+  require 'excon'
+require 'json'
+def index 
 
     
       if params[:lexical_type] 
@@ -21,16 +23,21 @@ class SearchController < ApplicationController
  
       elsif params[:semantic_type]  
 
-        words = params[:q][:content_or_text_cont] 
-        if words.blank?
-          redirect_to root_path
-          @counter = 0
-        else
-          @ayas = find_verse(words)
+        # words = params[:q][:content_or_text_cont] 
+        # if words.blank?
+        #   redirect_to root_path
+        #   @counter = 0
+        # else
+          foo = find_verse
+          @ayas = []
+          foo.each do |soon|
+            @ayas << Aya.find(soon)
+          end
+          @ayas = @ayas
           @counter = @ayas.count
-          # @pagy, @ayas = pagy(@ayas)
+          #   @pagy, @ayas = pagy(@ayas,items:12)
 
-        end
+        # end
 
       else  
         nil 
@@ -38,9 +45,9 @@ class SearchController < ApplicationController
 
     
   end
+
   
   
-  private 
 
   def request_api(url)
     response = Excon.get(url)
@@ -53,8 +60,29 @@ class SearchController < ApplicationController
     mb = request_api(
       "https://ac7a-217-52-191-171.eu.ngrok.io/similar-verse/#{query}"
     ) 
-    mb['results'].map { |row| row[2]}   
-  end 
+    results = mb["data"]  
+    apiresults = []
+    results.each do |result| 
+        apiresults << result[2]
+    end 
+
+apiresults
+  #  hey = []
+  #    apiresults.each do |res|
+  #         hey << Aya.find_by_aya_number(res)
+  #       end
+  #       p hey
+
+end
+  # def find_verse(words)
+  #   query = CGI.escape("#{words}")  
+  #   mb = request_api(
+  #     "https://ac7a-217-52-191-171.eu.ngrok.io/similar-verse/#{query}"
+  #   ) 
+  #   thankGod = mb['results'].map! { |row| row[1]} 
+    
+    
+  # end 
   
 end
 
@@ -65,34 +93,7 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class SearchController < ApplicationController
+#  class SearchController < ApplicationController
 #   require 'json' 
 #   require 'excon' 
   
@@ -100,7 +101,7 @@ end
 #     # # @page=params.fetch(:page,0).to_i
 #     #  @query = Aya.ransack(params[:q])
 #     #  @ayas1 = @query.result(distinct: true)
-#     # # @ayas =@ayas1.offset(@page * 10).limit(10)
+#     # # @ayas =@ayas.offset(@page * 10).limit(10)
 #     #  @counter= @ayas1.count
 #     # @pagy, @ayas = pagy(@ayas1,items:12)
 #     # # @ayas= Aya.where("text LIKE ?","%" + params[:q] + "%")

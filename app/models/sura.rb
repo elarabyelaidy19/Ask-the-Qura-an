@@ -1,0 +1,3 @@
+class Sura < ApplicationRecord
+
+end
