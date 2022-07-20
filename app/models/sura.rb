@@ -1,3 +1,0 @@
-class Sura < ApplicationRecord
-
-end

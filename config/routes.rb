@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'tafseer/:id', to: 'tafseers#show', as: :tafseer
+  get 'tafseers' ,to: "tafseers#index"
   get 'search', to:'search#index'
   get 'semantic' , to:'search#semantic'
   resources :ayas

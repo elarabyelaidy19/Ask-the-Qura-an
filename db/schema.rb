@@ -10,31 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_15_144400) do
+ActiveRecord::Schema.define(version: 2022_07_20_100700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "ayas", force: :cascade do |t|
     t.text "content"
-    t.integer "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "text"
-    t.integer "sura"
-    t.integer "indexe"
-    t.string "revelation_place"
     t.integer "aya_number"
-    t.string "surah_name"
-    t.integer "surah_number"
+    t.integer "surah_id"
+    t.integer "chapteer_id"
+    t.integer "chapter_id"
   end
 
-  create_table "suras", force: :cascade do |t|
-    t.integer "number"
+  create_table "chapters", force: :cascade do |t|
+    t.string "revelation_place"
     t.string "name"
-    t.string "location"
+    t.integer "chapter_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tafseers", force: :cascade do |t|
+    t.string "tafser"
+    t.string "ayanumber"
+    t.integer "chapter_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "aya_number"
+    t.string "aya_order"
+    t.string "chapter_id"
   end
 
 end

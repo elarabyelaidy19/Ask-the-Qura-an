@@ -12,7 +12,7 @@
         <% @ayas.each do |aya| %>
             <tr>
                 <% if aya != nil %>
-                    <div class="aya"><td > <%= aya.text + " (#{aya.surah_name} #{aya.aya_number}:#{aya.surah_number})" %><a href="#" class='suraLink'>link</a></td></div>
+                    <div class="aya"><td > <%= aya.text + " (#{Chapter.find(aya.chapter_id).name} #{aya.aya_number}:#{aya.chapter_id})" %>  <a href="<%= tafseer_path(aya.id) %>" class='suraLink'>تفسير</a></td></div>
                 <% end %>
             </tr>
         <% end %>
@@ -37,7 +37,7 @@
         <% @ayas.each do |aya| %>
             <tr>
                 <% if aya != nil %>
-                    <div class="aya"><td > <%= aya.text + " (#{aya.surah_name} #{aya.aya_number}:#{aya.surah_number})" %><a href="#" class='suraLink'>link</a></td></div>
+                    <div class="aya"><td > <%= aya.text + " (#{Chapter.find(aya.chapter_id).name} #{aya.aya_number}:#{aya.chapter_number})" %><a href="#" class='suraLink'>link</a></td></div>
                 <% end %>
             </tr>
         <% end %>
