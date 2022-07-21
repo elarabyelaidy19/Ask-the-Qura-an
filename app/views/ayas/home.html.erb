@@ -12,13 +12,23 @@
 
     </head>
     <body>
+<div class="navbarr">
+    <nav class="navbar navbar-light bg-light" >
+        <%= link_to 'سَل القرآن', root_path, class: 'nav-main'  %>
+        <a href=<%= root_path %>>
+            <%= image_tag 'quran.png',  class: 'nav-link' %>
+        </a>
+    </nav>
+</div>       
         <div>
         <center class="vertical-center">
-                <h1> سَل القرآن الكريم</h1>
-                <%=search_form_for(@query , url: search_path , method: :get ) do |f|  %>
-                    <%= f.search_field :content_or_text_cont , placeholder: "search...", class:"searchbar" %>
-                    <%= f.button "Semantic Search", type: :submit, name: "semantic_type", value: "semantic", class: "btn btn-primary" %>
-                    <%= f.button "Lexical Search", type: :submit, name: "lexical_type", value: "lexical", class: "btn btn-secondary" %>
+                <%= image_tag 'quran.png',  class: 'center-logo' %>
+
+                <%=search_form_for(@query , url: search_path , method: :get ) do |f|  %> 
+                    <%= f.search_field :content_or_text_cont , placeholder: "عن ماذا تبحث!..", class:"searchbar" %>
+                    <%= f.submit "semantic", name: "semantic_type", value: "بحث بالمعنى", class:"btn btn-dark" %>
+                    <%= f.submit "lexical", name: "lexical_type", value: "بحث باللفظ", class:"btn btn-dark" %>
+                     
                 <% end %>
 
         </center>

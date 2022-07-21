@@ -7,5 +7,6 @@ class TafseersController < ApplicationController
 
   def index
     @tafseers = Tafseer.all.order(:id)
+    render 'index'
   end
 end
