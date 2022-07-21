@@ -1,15 +1,10 @@
 
 
-
-# SerchController
 class SearchController < ApplicationController
   require 'excon'
 require 'json'
-def index 
-
-    
+    def index    
       if params[:lexical_type] 
-
         words = params[:q][:content_or_text_cont] 
         if words.blank?
           redirect_to root_path
@@ -20,25 +15,15 @@ def index
           @pagy, @ayas = pagy(@ayas,items:12)
 
         end
- 
-      elsif params[:semantic_type]  
-
-        # words = params[:q][:content_or_text_cont] 
-        # if words.blank?
-        #   redirect_to root_path
-        #   @counter = 0
-        # else
-          foo = find_verse
+      elsif params[:semantic_type]   
+          words = params[:q][:content_or_text_cont]
+          foo = find_verse(words)
           @ayas = []
           foo.each do |soon|
-            @ayas << Aya.find(soon)
+            @ayas << Aya.find(soon+1)
           end
           @ayas = @ayas
           @counter = @ayas.count
-          #   @pagy, @ayas = pagy(@ayas,items:12)
-
-        # end
-
       else  
         nil 
       end 
@@ -47,11 +32,11 @@ def index
   end
 
   
+  private
   
-
   def request_api(url)
     response = Excon.get(url)
-    #return nil if response.status != 200
+    return nil if response.status != 200
     JSON.parse(response.body)
   end
 
@@ -66,14 +51,47 @@ def index
         apiresults << result[2]
     end 
 
-apiresults
-  #  hey = []
-  #    apiresults.each do |res|
-  #         hey << Aya.find_by_aya_number(res)
-  #       end
-  #       p hey
-
+  apiresults
 end
+
+
+  
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   # def find_verse(words)
   #   query = CGI.escape("#{words}")  
   #   mb = request_api(
@@ -83,10 +101,13 @@ end
     
     
   # end 
-  
-end
 
 
+ #  hey = []
+  #    apiresults.each do |res|
+  #         hey << Aya.find_by_aya_number(res)
+  #       end
+  #       p hey
 
 
 
