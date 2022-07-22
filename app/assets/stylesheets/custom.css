@@ -89,7 +89,7 @@
     direction: rtl;
     font-family: 'Amiri', serif;
     border-color:#1A1A4C ;
-border-radius: 20px;
+    border-radius: 20px;
 
 
      
@@ -99,7 +99,8 @@ border-radius: 20px;
 
 .suraLink{
     float: left;
-    text-decoration: none;
+    text-decoration: none; 
+    color: rgb(4, 14, 57);
 }
 
 
