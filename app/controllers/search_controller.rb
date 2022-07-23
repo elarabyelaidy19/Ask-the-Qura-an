@@ -2,7 +2,7 @@
 
 class SearchController < ApplicationController
   require 'excon'
-require 'json'
+  require 'json'
     def index    
       if params[:lexical_type] 
         words = params[:q][:content_or_text_cont] 
@@ -17,10 +17,10 @@ require 'json'
         end
       elsif params[:semantic_type]   
           words = params[:q][:content_or_text_cont]
-          foo = find_verse(words)
+          verses = find_verse(words)
           @ayas = []
-          foo.each do |soon|
-            @ayas << Aya.find(soon+1)
+          verses.each do |verse|
+            @ayas << Aya.find(verse+1)
           end
           @ayas = @ayas
           @counter = @ayas.count
