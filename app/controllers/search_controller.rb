@@ -1,39 +1,32 @@
-
-
 class SearchController < ApplicationController
-  require 'excon'
-require 'json'
-    def index    
-      if params[:lexical_type] 
-        words = params[:q][:content_or_text_cont] 
-        if words.blank?
-          redirect_to root_path
-          @counter = 0
-        else
-          @ayas= Aya.where("content LIKE ?","%" + words + "%")
-          @counter = @ayas.count
-          @pagy, @ayas = pagy(@ayas,items:12)
 
+  def index    
+    if params[:lexical_type] 
+      words = params[:q][:content_or_text_cont] 
+      if words.blank?
+        redirect_to root_path
+        @counter = 0
+      else
+        @ayas= Aya.where("content LIKE ?","%" + words + "%")
+        @counter = @ayas.count
+        @pagy, @ayas = pagy(@ayas, items: 12)
+      end
+    elsif params[:semantic_type]   
+        words = params[:q][:content_or_text_cont]
+        foo = find_verse(words)
+        @ayas = []
+        foo.each do |soon|
+          @ayas << Aya.find(soon+1)
         end
-      elsif params[:semantic_type]   
-          words = params[:q][:content_or_text_cont]
-          foo = find_verse(words)
-          @ayas = []
-          foo.each do |soon|
-            @ayas << Aya.find(soon+1)
-          end
-          @ayas = @ayas
-          @counter = @ayas.count
-      else  
-        nil 
-      end 
-
-    
+        @ayas = @ayas
+        @counter = @ayas.count
+    else  
+      nil 
+    end 
   end
 
-  
+
   private
-  
   def request_api(url)
     response = Excon.get(url)
     return nil if response.status != 200
@@ -43,19 +36,15 @@ require 'json'
   def find_verse(words)
     query = CGI.escape("#{words}")  
     mb = request_api(
-      "https://ac7a-217-52-191-171.eu.ngrok.io/similar-verse/#{query}"
+      "https://0926-154-239-162-122.eu.ngrok.io/similar-verse/#{query}"
     ) 
-    results = mb["data"]  
+    results = mb["results"]  
     apiresults = []
     results.each do |result| 
-        apiresults << result[2]
+        apiresults << result[1]
     end 
-
-  apiresults
-end
-
-
-  
+    apiresults
+  end
 end
 
 
