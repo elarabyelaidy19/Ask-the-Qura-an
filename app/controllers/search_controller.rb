@@ -1,4 +1,19 @@
 class SearchController < ApplicationController
+<<<<<<< HEAD
+=======
+  require 'excon'
+  require 'json'
+    def index    
+      if params[:lexical_type] 
+        words = params[:q][:content_or_text_cont] 
+        if words.blank?
+          redirect_to root_path
+          @counter = 0
+        else
+          @ayas= Aya.where("content LIKE ?","%" + words + "%")
+          @counter = @ayas.count
+          @pagy, @ayas = pagy(@ayas,items:12)
+>>>>>>> 4ea1b893b325080d0a848b3f2c1705aa3d42a0a3
 
   def index    
     if params[:lexical_type] 
@@ -18,11 +33,28 @@ class SearchController < ApplicationController
         foo.each do |soon|
           @ayas << Aya.find(soon+1)
         end
+<<<<<<< HEAD
         @ayas = @ayas
         @counter = @ayas.count
     else  
       nil 
     end 
+=======
+      elsif params[:semantic_type]   
+          words = params[:q][:content_or_text_cont]
+          verses = find_verse(words)
+          @ayas = []
+          verses.each do |verse|
+            @ayas << Aya.find(verse+1)
+          end
+          @ayas = @ayas
+          @counter = @ayas.count
+      else  
+        nil 
+      end 
+
+    
+>>>>>>> 4ea1b893b325080d0a848b3f2c1705aa3d42a0a3
   end
 
 
